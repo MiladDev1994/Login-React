@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from './register.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {validata} from "../elements/validate";
 
 
 const Register = () => {
@@ -52,51 +53,6 @@ const Register = () => {
     }
 
 
-
-    useEffect(() => {
-
-        const error = {};
-        if (data.name === ''){
-            error.name = "Name is required";
-        }else {
-            delete error.name
-        }
-
-        if (data.email === ''){
-            error.email = "Email is required";
-        }else if (!data.email.includes("@gmail.com")){
-            error.email = "Email is undefined";
-        }else {
-            delete error.email
-        }
-
-        if (data.password === ''){
-            error.password = "Password is required";
-        }else if (data.password.length < 5){
-            error.password = "Password haveTo be more 5 items";
-        }else {
-            delete error.password
-        }
-
-        if (data.confirmPassword === ''){
-            error.confirmPassword = "ConfirmPassword is required";
-        }else if (data.confirmPassword !== data.password){
-            error.confirmPassword = "ConfirmPassword is false";
-        } else {
-            delete error.confirmPassword
-        }
-
-        if (data.law === false){
-            error.law = "Law is required";
-        }else {
-            delete error.law
-        }
-
-        setErrors(error)
-
-    } , [data])
-
-
     const formHandeler = (e) => {
         e.preventDefault()
         const validate = Object.keys(errors)
@@ -133,7 +89,13 @@ const Register = () => {
         }
     }
 
-    console.log(active)
+
+
+    useEffect(() => {
+        setErrors(validata(data , "signin"))
+    } , [data])
+
+
     return (
         <div className={`container mt-3 text-light ${styles.registerBox}`}>
             <div className={"container-fluid"}>
