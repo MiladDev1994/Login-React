@@ -1,6 +1,3 @@
-
-
-
 export  const validata = (data , action) => {
     const error = {};
     if (action === "signin"){
