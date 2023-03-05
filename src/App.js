@@ -9,7 +9,8 @@ function App() {
   return (
       <>
           <Navbar />
-          <div className={"bg-secondary"} style={{height:"100vh"}}>
+          <div className={"bg-secondary"} style={{minHeight:"100vh"}}>
+              <div style={{height:"70px"}}></div>
               <Routes>
                   <Route path={"/"} element={<Home />} />
                   <Route path={"/register"} element={<Register />} />
